@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JWT Authentication</title>
+</head>
+<body>
+    <input id="login-name" placeholder="Name:"></input>
+    <input id="login-email" placeholder="Email:"></input>
+    <input id="login-password" placeholder="Password:"></input>
+    <button id="login-button">Click me!</button>
+    <script>
+        document.getElementById("login-button").onclick = function () {
+            name = document.getElementById("login-name").value
+            email = document.getElementById("login-email").value
+            password = document.getElementById("login-password").value
+
+            fetch('/login?' + new URLSearchParams({
+                "Name": name,
+                "Email": email,
+                "Password": password
+            }), {
+                method: 'POST',
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(JSON.stringify(data));
+            });
+        }
+    </script>
+</body>
+</html>
